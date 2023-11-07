@@ -20,6 +20,7 @@ struct ContentView: View {
             }
             .frame(maxWidth: 1000)
             .edgesIgnoringSafeArea(.horizontal)
+          
             
             VStack {
                 RoundedRectangle(cornerRadius: 15)
