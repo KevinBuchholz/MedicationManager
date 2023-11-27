@@ -14,7 +14,6 @@
 		D628E5352AC20587003D8574 /* MedicationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E5342AC20587003D8574 /* MedicationManagerTests.swift */; };
 		D628E53F2AC20587003D8574 /* MedicationManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E53E2AC20587003D8574 /* MedicationManagerUITests.swift */; };
 		D628E5412AC20587003D8574 /* MedicationManagerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E5402AC20587003D8574 /* MedicationManagerUITestsLaunchTests.swift */; };
-		D628E54E2AC20F48003D8574 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E54D2AC20F48003D8574 /* DayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,6 @@
 		D628E53A2AC20587003D8574 /* MedicationManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedicationManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D628E53E2AC20587003D8574 /* MedicationManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationManagerUITests.swift; sourceTree = "<group>"; };
 		D628E5402AC20587003D8574 /* MedicationManagerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationManagerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D628E54D2AC20F48003D8574 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +96,6 @@
 			children = (
 				D628E5232AC20586003D8574 /* MedicationManagerApp.swift */,
 				D628E5252AC20586003D8574 /* ContentView.swift */,
-				D628E54D2AC20F48003D8574 /* DayView.swift */,
 				D628E5272AC20587003D8574 /* Assets.xcassets */,
 				D628E5292AC20587003D8574 /* Preview Content */,
 			);
@@ -261,7 +258,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D628E5262AC20586003D8574 /* ContentView.swift in Sources */,
-				D628E54E2AC20F48003D8574 /* DayView.swift in Sources */,
 				D628E5242AC20586003D8574 /* MedicationManagerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
