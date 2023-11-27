@@ -17,7 +17,7 @@ struct ContentView: View {
             if viewModel.firstLaunchOfApp == true {
                 OnboardingView()
 
-            }else if viewModel.firstLaunchOfApp == false {
+            }else {
                 PrimaryView()
             }
         }
@@ -28,10 +28,15 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .environmentObject(LocalUserViewModel())
-            
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//            .environmentObject(LocalUserViewModel())
+//            
+//    }
+//}
+
+//#Preview {
+//    ContentView()
+//        .environmentObject(LocalUserViewModel())
+//}

@@ -10,18 +10,13 @@ import SwiftUI
 struct PrimaryView: View {
     @EnvironmentObject var viewModel : LocalUserViewModel
     @Environment (\.verticalSizeClass) var verticalSizeClass
+    @State private var hasTakenPill = false
     
     var body: some View {
         VStack{
-            //            Spacer()
-            //            Spacer()
-            //            Spacer()
-            //            Spacer()
-            //            Spacer()
-            
             ScrollView(.horizontal) {
                 
-                LazyHStack(alignment: .center, spacing: 15, pinnedViews: /*@START_MENU_TOKEN@*/[]/*@END_MENU_TOKEN@*/, content: {
+                LazyHStack(alignment: .center, spacing: 10, pinnedViews: /*@START_MENU_TOKEN@*/[]/*@END_MENU_TOKEN@*/, content: {
                     
                     ForEach(1...10, id: \.self) { count in
                         SingleDayRectangle()
@@ -38,26 +33,48 @@ struct PrimaryView: View {
             }
             .contentMargins(30, for: .scrollContent)
             .scrollTargetBehavior(.viewAligned)
-//            .flipsForRightToLeftLayoutDirection(true)
             .environment(\.layoutDirection, .rightToLeft)
             .scrollIndicators(.hidden)
            
+            Button{
+                hasTakenPill.toggle()
+            } label: {
+                Text("Take your Pill")
+                    .frame(maxWidth: .infinity, maxHeight: 100)
+                    .multilineTextAlignment(.center)
+                    .font(.largeTitle)
+                    .fontWeight(.ultraLight)
+                    .padding()
+                    .foregroundColor(.black)
+                    .background{
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.pink)
+                            .opacity(0.1)
+                    }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(.black, lineWidth: 1)
+                            .opacity(0.2))
+                            .padding(25)
+            }
+//            .contentShape(RoundedRectangle(cornerRadius: 10))
             
-//            
-//            Button("Print Timeline", action: print("\(viewModel.localUserTimeLine)"))
-            
-            RoundedRectangle(cornerRadius: 15)
-                .padding(25)
-                .frame(maxWidth: .infinity, maxHeight: 200)
+//            RoundedRectangle(cornerRadius: 15)
+//                .padding(25)
+//                .frame(maxWidth: .infinity, maxHeight: 200)
             
                         Spacer()
             
         }
     }
 }
-struct PrimaryView_Previews: PreviewProvider {
-    static var previews: some View {
-        PrimaryView()
-            .environmentObject(LocalUserViewModel())
-    }
+//struct PrimaryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PrimaryView()
+//            .environmentObject(LocalUserViewModel())
+//    }
+//}
+
+#Preview {
+    PrimaryView()
 }

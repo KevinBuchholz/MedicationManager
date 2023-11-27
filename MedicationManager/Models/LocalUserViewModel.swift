@@ -44,6 +44,8 @@ import Foundation
 
     @Published var firstLaunchOfApp : Bool
     @Published var localUserTimeLine = [Date]() 
+//    @Published var hasTakenPill = false
+    
     let date = Date()
     var userLocale = Locale.autoupdatingCurrent
     var gregorianCalendar = Calendar(identifier: .gregorian)
