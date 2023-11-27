@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D628E5242AC20586003D8574 /* MedicationManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E5232AC20586003D8574 /* MedicationManagerApp.swift */; };
-		D628E5262AC20586003D8574 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E5252AC20586003D8574 /* ContentView.swift */; };
+		D628E5262AC20586003D8574 /* PrimaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E5252AC20586003D8574 /* PrimaryView.swift */; };
 		D628E5282AC20587003D8574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D628E5272AC20587003D8574 /* Assets.xcassets */; };
 		D628E52B2AC20587003D8574 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D628E52A2AC20587003D8574 /* Preview Assets.xcassets */; };
 		D628E5352AC20587003D8574 /* MedicationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D628E5342AC20587003D8574 /* MedicationManagerTests.swift */; };
@@ -18,6 +18,8 @@
 		D66BB6862B14FCF300FFD190 /* LocalUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB6852B14FCF300FFD190 /* LocalUserViewModel.swift */; };
 		D66BB6882B14FD1300FFD190 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB6872B14FD1300FFD190 /* DirectoryService.swift */; };
 		D66BB68A2B14FFA900FFD190 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB6892B14FFA800FFD190 /* FileManager.swift */; };
+		D66BB68D2B151B5700FFD190 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB68C2B151B5700FFD190 /* OnboardingView.swift */; };
+		D66BB68F2B151DA900FFD190 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB68E2B151DA900FFD190 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,7 @@
 /* Begin PBXFileReference section */
 		D628E5202AC20586003D8574 /* MedicationManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedicationManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D628E5232AC20586003D8574 /* MedicationManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationManagerApp.swift; sourceTree = "<group>"; };
-		D628E5252AC20586003D8574 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D628E5252AC20586003D8574 /* PrimaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryView.swift; sourceTree = "<group>"; };
 		D628E5272AC20587003D8574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D628E52A2AC20587003D8574 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D628E5302AC20587003D8574 /* MedicationManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedicationManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,8 @@
 		D66BB6852B14FCF300FFD190 /* LocalUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalUserViewModel.swift; sourceTree = "<group>"; };
 		D66BB6872B14FD1300FFD190 /* DirectoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectoryService.swift; sourceTree = "<group>"; };
 		D66BB6892B14FFA800FFD190 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		D66BB68C2B151B5700FFD190 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		D66BB68E2B151DA900FFD190 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				D628E5232AC20586003D8574 /* MedicationManagerApp.swift */,
-				D628E5252AC20586003D8574 /* ContentView.swift */,
+				D66BB68B2B151B1200FFD190 /* Onboarding */,
+				D628E5252AC20586003D8574 /* PrimaryView.swift */,
 				D66BB6822B14F9D200FFD190 /* Models */,
 				D628E5272AC20587003D8574 /* Assets.xcassets */,
 				D628E5292AC20587003D8574 /* Preview Content */,
@@ -145,6 +150,15 @@
 				D66BB6892B14FFA800FFD190 /* FileManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D66BB68B2B151B1200FFD190 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D66BB68C2B151B5700FFD190 /* OnboardingView.swift */,
+				D66BB68E2B151DA900FFD190 /* ContentView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +293,9 @@
 			files = (
 				D66BB6842B14F9E700FFD190 /* SingleDayRectangle.swift in Sources */,
 				D66BB6862B14FCF300FFD190 /* LocalUserViewModel.swift in Sources */,
-				D628E5262AC20586003D8574 /* ContentView.swift in Sources */,
+				D66BB68F2B151DA900FFD190 /* ContentView.swift in Sources */,
+				D66BB68D2B151B5700FFD190 /* OnboardingView.swift in Sources */,
+				D628E5262AC20586003D8574 /* PrimaryView.swift in Sources */,
 				D66BB68A2B14FFA900FFD190 /* FileManager.swift in Sources */,
 				D66BB6882B14FD1300FFD190 /* DirectoryService.swift in Sources */,
 				D628E5242AC20586003D8574 /* MedicationManagerApp.swift in Sources */,
