@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct PrimaryView: View {
+    @EnvironmentObject var viewModel : LocalUserViewModel
     @Environment (\.verticalSizeClass) var verticalSizeClass
     
     var body: some View {
@@ -43,10 +43,8 @@ struct ContentView: View {
             .scrollIndicators(.hidden)
            
             
-            
-//            Text("Take a pill")
-//                .font(.largeTitle)
-//                .padding()
+//            
+//            Button("Print Timeline", action: print("\(viewModel.localUserTimeLine)"))
             
             RoundedRectangle(cornerRadius: 15)
                 .padding(25)
@@ -57,8 +55,9 @@ struct ContentView: View {
         }
     }
 }
-struct ContentView_Previews: PreviewProvider {
+struct PrimaryView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        PrimaryView()
+            .environmentObject(LocalUserViewModel())
     }
 }

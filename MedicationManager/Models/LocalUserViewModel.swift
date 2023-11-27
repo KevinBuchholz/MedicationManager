@@ -43,7 +43,7 @@ import Foundation
     
 
     @Published var firstLaunchOfApp : Bool
-    @Published var localUserTimeLine = [Date]()
+    @Published var localUserTimeLine = [Date]() 
     let date = Date()
     var userLocale = Locale.autoupdatingCurrent
     var gregorianCalendar = Calendar(identifier: .gregorian)
@@ -94,7 +94,31 @@ import Foundation
     //    }
     
     func scheduleCustomNotification(date: Date) async throws {
+       
         
+        let content = UNMutableNotificationContent()
+        content.title = "TAKE YOUR PILLS"
+        content.subtitle = "NOWWWWWWW"
+        content.sound = .default
+//        content.badge = 1
+        //Debugging print statements- comment out before test flight.
+        
+       
+        
+       
+        
+        
+        let dateComponents = Calendar.current.dateComponents([.hour, .minute, .second, .timeZone], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger)
+        try await UNUserNotificationCenter.current().add(request)
+        
+//        saveArrayToStorage(array: userActivities)
     }
     
     func cancelNotifications() {
