@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MedicationManagerApp: App {
+    @StateObject var viewModel = LocalUserViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(LocalUserViewModel())
         }
     }
 }
