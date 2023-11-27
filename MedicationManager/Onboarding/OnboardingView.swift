@@ -63,7 +63,7 @@ struct OnboardingView: View {
                     if viewModel.authorizedNotifications == false {
                         viewModel.requestAuthorization(date: setInterruptor)
                         viewModel.localUserTimeLine.append(setInterruptor)
-                        viewModel.saveArrrayToStorage(array: timeLine)
+                        viewModel.saveArrrayToStorage(array: viewModel.localUserTimeLine)
                         print("\(viewModel.localUserTimeLine)")
                         
                     }else {
