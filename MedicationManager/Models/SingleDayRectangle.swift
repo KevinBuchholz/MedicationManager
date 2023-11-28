@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct SingleDayRectangle: View {
+    
+    @Binding var hasTakenPill : Bool
+    
     var body: some View {
         
             RoundedRectangle(cornerRadius: 15)
                 .aspectRatio(1, contentMode: .fit)
-                .foregroundColor(.pink)
-                .opacity(0.2)
+                .foregroundColor(hasTakenPill ? Color.green : Color.pink)
+                .opacity(0.1)
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(.black, lineWidth: 1)
@@ -30,5 +33,5 @@ struct SingleDayRectangle: View {
 }
 
 #Preview {
-    SingleDayRectangle()
+    SingleDayRectangle(hasTakenPill: PrimaryView().$hasTakenPill)
 }
