@@ -16,7 +16,6 @@ struct ContentView: View {
         Group{
             if viewModel.firstLaunchOfApp == true {
                 OnboardingView()
-
             }else {
                 PrimaryView()
             }

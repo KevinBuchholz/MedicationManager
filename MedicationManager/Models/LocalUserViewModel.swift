@@ -38,6 +38,7 @@ import Foundation
     }
     
     func loadArrayFromStorage() -> [Date]? {
+        print("Loading")
         return UserDefaults.standard.array(forKey: "timeLineKey") as? [Date]
     }
     
@@ -45,6 +46,7 @@ import Foundation
     @Published var firstLaunchOfApp : Bool
     @Published var localUserTimeLine = [Date]() 
 //    @Published var hasTakenPill = false
+    @State var hasTakenPill = false
     
     let date = Date()
     var userLocale = Locale.autoupdatingCurrent
@@ -120,7 +122,7 @@ import Foundation
             trigger: trigger)
         try await UNUserNotificationCenter.current().add(request)
         
-//        saveArrayToStorage(array: userActivities)
+
     }
     
     func cancelNotifications() {
