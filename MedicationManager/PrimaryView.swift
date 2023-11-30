@@ -41,10 +41,14 @@ struct PrimaryView: View {
                 
                 Button{
                     hasTakenPill.toggle()
+                    print("\(viewModel.localUserTimeLine)")
                 } label: {
                     Text("Take your Pill")
-                        .frame(maxWidth: .infinity, maxHeight: 100)
-                        .multilineTextAlignment(.center)
+//                        .frame(maxWidth: .infinity, maxHeight: 100)
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity,
+                            alignment: .bottomTrailing)
                         .font(.largeTitle)
                         .fontWeight(.ultraLight)
                         .padding()
@@ -57,16 +61,20 @@ struct PrimaryView: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(.black, lineWidth: 1)
-                                .opacity(0.1))
-                        .padding(25)
+                                .opacity(0.3))
+                        .padding(30)
                 }
                 //            .contentShape(RoundedRectangle(cornerRadius: 10))
                 
                 //            RoundedRectangle(cornerRadius: 15)
                 //                .padding(25)
                 //                .frame(maxWidth: .infinity, maxHeight: 200)
-                        Spacer()
+//                        Spacer()
               
+            }
+            .onAppear{
+                viewModel.loadArrayFromStorage()
+                print(viewModel.localUserTimeLine)
             }
             
         }
