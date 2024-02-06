@@ -9,9 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var viewModel: LocalUserViewModel
-    
-//    @ State private var firstLaunchOfApp = true
-    
+
     var body: some View {
         Group{
             if viewModel.firstLaunchOfApp == true {
@@ -27,15 +25,3 @@ struct ContentView: View {
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//            .environmentObject(LocalUserViewModel())
-//            
-//    }
-//}
-
-//#Preview {
-//    ContentView()
-//        .environmentObject(LocalUserViewModel())
-//}

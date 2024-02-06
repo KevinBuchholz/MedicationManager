@@ -10,6 +10,7 @@ import SwiftUI
 struct PrimaryView: View {
     @EnvironmentObject var viewModel : LocalUserViewModel
     @Environment (\.verticalSizeClass) var verticalSizeClass
+//    let date = Date.now
     @State var hasTakenPill = false
     
     var body: some View {
@@ -22,12 +23,9 @@ struct PrimaryView: View {
                         ForEach(1...10, id: \.self) { count in
                             SingleDayRectangle(hasTakenPill: PrimaryView().$hasTakenPill)
                         }
-                        
                         .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 1 : 3, spacing: 15)
                         .scrollTransition { content, phase in content
                                 .opacity(phase .isIdentity ? 1.0 : 0.3)
-                            //                            .scaleEffect(x: phase .isIdentity ? 1.0 : 0.3, y: phase .isIdentity ? 1.0 : 0.8)
-                            //                            .offset(y: phase .isIdentity ? 0 : 50)
                         }
                     })
                     .scrollTargetLayout()
@@ -37,6 +35,7 @@ struct PrimaryView: View {
                 .environment(\.layoutDirection, .rightToLeft)
                 .scrollIndicators(.hidden)
             }
+
             VStack {
                 
                 Button{
@@ -44,7 +43,6 @@ struct PrimaryView: View {
                     print("\(viewModel.localUserTimeLine)")
                 } label: {
                     Text("Take your Pill")
-//                        .frame(maxWidth: .infinity, maxHeight: 100)
                         .frame(
                             maxWidth: .infinity,
                             maxHeight: .infinity,
@@ -64,28 +62,15 @@ struct PrimaryView: View {
                                 .opacity(0.3))
                         .padding(30)
                 }
-                //            .contentShape(RoundedRectangle(cornerRadius: 10))
-                
-                //            RoundedRectangle(cornerRadius: 15)
-                //                .padding(25)
-                //                .frame(maxWidth: .infinity, maxHeight: 200)
-//                        Spacer()
-              
             }
-            .onAppear{
-                viewModel.loadArrayFromStorage()
-                print(viewModel.localUserTimeLine)
-            }
+//            .onAppear{
+//                viewModel.loadArrayFromStorage()
+//                print(viewModel.localUserTimeLine)
+//            }
             
         }
     }
 }
-//struct PrimaryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PrimaryView()
-//            .environmentObject(LocalUserViewModel())
-//    }
-//}
 
 #Preview {
     PrimaryView()

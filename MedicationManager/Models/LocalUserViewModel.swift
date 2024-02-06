@@ -13,6 +13,12 @@ import Foundation
 
 @MainActor class LocalUserViewModel: ObservableObject {
     
+    var passedDays : [Day] = [Day(hasTakenPill: true), Day(hasTakenPill: true), Day(hasTakenPill: false), Day(hasTakenPill: true)]
+    
+    var dayArray : [Day] = [Day(hasTakenPill: true)]
+    
+    var today = Day(hasTakenPill: false)
+    
     let savePath = FileManager.documentsDirectory.appendingPathComponent("firstLaunchOfApp")
     init() {
         do {
@@ -46,11 +52,13 @@ import Foundation
     @Published var firstLaunchOfApp : Bool
     @Published var localUserTimeLine = [Date]() 
 //    @Published var hasTakenPill = false
-    @State var hasTakenPill = false
+//    @State var hasTakenPill = false
     
-    let date = Date()
+  
     var userLocale = Locale.autoupdatingCurrent
     var gregorianCalendar = Calendar(identifier: .gregorian)
+    let dateComponents = Calendar.current.dateComponents([.weekday], from: Date())
+
 
 
     var authorizedNotifications = false
@@ -96,6 +104,9 @@ import Foundation
     //        UNUserNotificationCenter.current().add(request)
     //
     //    }
+    func drawToday(date: Date) {
+//        SingleDayRectangle(hasTakenPill: false)
+    }
     
     func scheduleCustomNotification(date: Date) async throws {
        
@@ -105,7 +116,7 @@ import Foundation
         content.subtitle = "NOWWWWWWW"
         content.sound = .default
 //        content.badge = 1
-        //Debugging print statements- comment out before test flight.
+        
         
        
         
@@ -133,4 +144,6 @@ import Foundation
     func clearBadge() {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
+    
+   
 }
