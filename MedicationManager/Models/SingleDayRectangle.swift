@@ -7,11 +7,25 @@
 
 import SwiftUI
 
-struct SingleDayRectangle: View {
+//let date = Date()
+//var userLocale = Locale.autoupdatingCurrent
+//var gregorianCalendar = Calendar(identifier: .gregorian)
+//let dateComponents = Calendar.current.dateComponents([.weekday], from: date)
+
+struct SingleDayRectangle: Identifiable, View {
+  
+    @EnvironmentObject var viewModel : LocalUserViewModel
+    let id = UUID()
+    let date = Date.now
+    var userLocale = Locale.autoupdatingCurrent
+    var gregorianCalendar = Calendar(identifier: .gregorian)
+    let dateComponents = Calendar.current.dateComponents([.weekday], from: Date())
+    
     
     @Binding var hasTakenPill : Bool
     
     var body: some View {
+//        let dayOfWeek = dateComponents.weekday
         
             RoundedRectangle(cornerRadius: 15)
                 .aspectRatio(1, contentMode: .fit)
@@ -21,7 +35,8 @@ struct SingleDayRectangle: View {
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(.black, lineWidth: 1)
                         .opacity(0.2))
-                .overlay(Text("Monday 12")
+                .overlay(Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                
                     .font(.largeTitle)
                     .fontWeight(.ultraLight)
                     .frame(
@@ -34,4 +49,5 @@ struct SingleDayRectangle: View {
 
 #Preview {
     SingleDayRectangle(hasTakenPill: PrimaryView().$hasTakenPill)
+        .environmentObject(LocalUserViewModel())
 }
