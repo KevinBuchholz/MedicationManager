@@ -11,11 +11,19 @@ import Foundation
 
 @MainActor class LocalUserViewModel: ObservableObject {
     
-    var passedDays : [Day] = [Day(hasTakenPill: true), Day(hasTakenPill: true), Day(hasTakenPill: false), Day(hasTakenPill: true)]
+    var passedDays: [Day] = [Day(hasTakenPill: true), Day(hasTakenPill: true), Day(hasTakenPill: false), Day(hasTakenPill: true)]
     
-    var dayArray : [Day] = [Day(hasTakenPill: true)]
+    @Published var dayArray: [SingleDayRectangle] = []
     
     var today = Day(hasTakenPill: false)
+    
+    func makeTodayCount() {
+        let newDay = SingleDayRectangle()
+        
+        if Date.now > dayArray[0].date {
+            dayArray.insert(newDay, at: 0)
+        }
+    }
   
 
     let savePath = FileManager.documentsDirectory.appendingPathComponent("firstLaunchOfApp")
@@ -56,10 +64,7 @@ import Foundation
     @Published var firstLaunchOfApp : Bool
     @Published var startDate : Date
     @Published var localUserTimeLine = [Date]()
-//    @Published var hasTakenPill = false
-//    @State var hasTakenPill = false
-    
-  
+      
     var userLocale = Locale.autoupdatingCurrent
     var gregorianCalendar = Calendar(identifier: .gregorian)
     let dateComponents = Calendar.current.dateComponents([.weekday], from: Date())
