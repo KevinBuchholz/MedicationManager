@@ -7,9 +7,7 @@
 import SwiftUI
 import Foundation
 
-// The PrimaryView needs a navigation to UserPreferences - probably doesn't need to be here.
-// The PrimaryView needs a progress visualization.
-// The PrimaryView needs to populate with prompt for the user to "do an activity" instead of looking at social media.
+
 
 @MainActor class LocalUserViewModel: ObservableObject {
     
@@ -18,22 +16,28 @@ import Foundation
     var dayArray : [Day] = [Day(hasTakenPill: true)]
     
     var today = Day(hasTakenPill: false)
-    
+  
+
     let savePath = FileManager.documentsDirectory.appendingPathComponent("firstLaunchOfApp")
     init() {
         do {
-            let data = try Data(contentsOf: savePath)
-            firstLaunchOfApp = try JSONDecoder().decode(Bool.self, from: data)
+            let firstLaunch = try Data(contentsOf: savePath)
+            firstLaunchOfApp = try JSONDecoder().decode(Bool.self, from: firstLaunch)
+            let savedStartDate = try Data(contentsOf: savePath)
+            startDate = try JSONDecoder().decode(Date.self, from: savedStartDate)
             
         } catch {
             firstLaunchOfApp = true
+            startDate = Date.now
         }
     }
     
     func save() {
         do {
-            let data = try JSONEncoder().encode(firstLaunchOfApp)
-            try data.write(to: savePath, options: [.atomic, .completeFileProtection])
+            let firstLaunch = try JSONEncoder().encode(firstLaunchOfApp)
+            let savedStartDate = try JSONEncoder().encode(startDate)
+            try firstLaunch.write(to: savePath, options: [.atomic, .completeFileProtection])
+            try savedStartDate.write(to: savePath, options: [.atomic, .completeFileProtection])
         } catch {
             print("Unable to save data.")
         }
@@ -50,7 +54,8 @@ import Foundation
     
 
     @Published var firstLaunchOfApp : Bool
-    @Published var localUserTimeLine = [Date]() 
+    @Published var startDate : Date
+    @Published var localUserTimeLine = [Date]()
 //    @Published var hasTakenPill = false
 //    @State var hasTakenPill = false
     
