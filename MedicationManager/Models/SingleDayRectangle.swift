@@ -20,22 +20,25 @@ struct SingleDayRectangle: Identifiable, View {
     var userLocale = Locale.autoupdatingCurrent
     var gregorianCalendar = Calendar(identifier: .gregorian)
     let dateComponents = Calendar.current.dateComponents([.weekday], from: Date())
-    
-    
-    private(set) var hasTakenPill = false
-    
-    mutating func takePill() {
-        hasTakenPill = true
+    var hasTakenPill: Bool = false
+    var itemColor: Color {
+        
+        if hasTakenPill == true {
+            return .green
+        } else {
+            return .pink
+        }
     }
     
-    static let example = SingleDayRectangle(hasTakenPill: false)
     
+    
+
     var body: some View {
 //        let dayOfWeek = dateComponents.weekday
         
             RoundedRectangle(cornerRadius: 15)
                 .aspectRatio(1, contentMode: .fit)
-                .foregroundColor(hasTakenPill ? Color.green : Color.pink)
+                .foregroundColor(itemColor)
                 .opacity(0.1)
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
