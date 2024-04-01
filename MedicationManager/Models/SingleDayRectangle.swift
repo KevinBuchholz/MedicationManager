@@ -22,7 +22,13 @@ struct SingleDayRectangle: Identifiable, View {
     let dateComponents = Calendar.current.dateComponents([.weekday], from: Date())
     
     
-    @Binding var hasTakenPill : Bool
+    private(set) var hasTakenPill = false
+    
+    mutating func takePill() {
+        hasTakenPill = true
+    }
+    
+    static let example = SingleDayRectangle(hasTakenPill: false)
     
     var body: some View {
 //        let dayOfWeek = dateComponents.weekday
@@ -35,7 +41,7 @@ struct SingleDayRectangle: Identifiable, View {
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(.black, lineWidth: 1)
                         .opacity(0.2))
-                .overlay(Text(Date.now.formatted(date: .abbreviated, time: .omitted))
+                .overlay(Text(date.formatted(date: .abbreviated, time: .omitted))
                 
                     .font(.largeTitle)
                     .fontWeight(.ultraLight)
@@ -48,6 +54,5 @@ struct SingleDayRectangle: Identifiable, View {
 }
 
 #Preview {
-    SingleDayRectangle(hasTakenPill: PrimaryView().$hasTakenPill)
-        .environmentObject(LocalUserViewModel())
+    SingleDayRectangle(hasTakenPill: false)
 }

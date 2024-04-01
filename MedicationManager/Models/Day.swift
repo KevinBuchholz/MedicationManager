@@ -11,4 +11,8 @@ struct Day: Identifiable {
     let id = UUID()
     let date = Date()
     var hasTakenPill : Bool
+    
+    mutating func takePill() {
+        hasTakenPill = true
+    }
 }

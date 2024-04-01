@@ -21,7 +21,7 @@ struct PrimaryView: View {
                     LazyHStack(alignment: .center, spacing: 10, pinnedViews: /*@START_MENU_TOKEN@*/[]/*@END_MENU_TOKEN@*/, content: {
                         
                         ForEach(1...10, id: \.self) { count in
-                            SingleDayRectangle(hasTakenPill: PrimaryView().$hasTakenPill)
+                            SingleDayRectangle()
                         }
                         .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 1 : 3, spacing: 15)
                         .scrollTransition { content, phase in content
