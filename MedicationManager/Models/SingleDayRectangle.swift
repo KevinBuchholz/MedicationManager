@@ -12,9 +12,9 @@ import SwiftUI
 //var gregorianCalendar = Calendar(identifier: .gregorian)
 //let dateComponents = Calendar.current.dateComponents([.weekday], from: date)
 
-struct SingleDayRectangle: Identifiable, View {
+struct SingleDayRectangle: Hashable, View {
   
-    @EnvironmentObject var viewModel : LocalUserViewModel
+    
     let id = UUID()
     let date = Date.now
     var userLocale = Locale.autoupdatingCurrent

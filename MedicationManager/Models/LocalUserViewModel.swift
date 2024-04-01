@@ -20,7 +20,11 @@ import Foundation
     func makeTodayCount() {
         let newDay = SingleDayRectangle()
         
-        if Date.now > dayArray[0].date {
+        if dayArray.isEmpty {
+            dayArray.insert(newDay, at: 0)
+        } else if
+            Date.now > dayArray[0].date
+        {
             dayArray.insert(newDay, at: 0)
         }
     }
