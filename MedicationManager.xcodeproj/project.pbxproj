@@ -21,6 +21,7 @@
 		D66BB68D2B151B5700FFD190 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB68C2B151B5700FFD190 /* OnboardingView.swift */; };
 		D66BB68F2B151DA900FFD190 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB68E2B151DA900FFD190 /* ContentView.swift */; };
 		D68F64532BBAF7700048F671 /* TakePillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F64522BBAF7700048F671 /* TakePillButton.swift */; };
+		D68F64DB2BBC99D20048F671 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68F64DA2BBC99D20048F671 /* DateExtension.swift */; };
 		D69501262B6AE24A0006668C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69501252B6AE24A0006668C /* Day.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		D66BB68C2B151B5700FFD190 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D66BB68E2B151DA900FFD190 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D68F64522BBAF7700048F671 /* TakePillButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePillButton.swift; sourceTree = "<group>"; };
+		D68F64DA2BBC99D20048F671 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D69501252B6AE24A0006668C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 				D66BB6892B14FFA800FFD190 /* FileManager.swift */,
 				D69501252B6AE24A0006668C /* Day.swift */,
 				D68F64522BBAF7700048F671 /* TakePillButton.swift */,
+				D68F64DA2BBC99D20048F671 /* DateExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				D68F64532BBAF7700048F671 /* TakePillButton.swift in Sources */,
 				D66BB68D2B151B5700FFD190 /* OnboardingView.swift in Sources */,
 				D628E5262AC20586003D8574 /* PrimaryView.swift in Sources */,
+				D68F64DB2BBC99D20048F671 /* DateExtension.swift in Sources */,
 				D69501262B6AE24A0006668C /* Day.swift in Sources */,
 				D66BB68A2B14FFA900FFD190 /* FileManager.swift in Sources */,
 				D66BB6882B14FD1300FFD190 /* DirectoryService.swift in Sources */,
@@ -465,6 +469,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedicationManager/Preview Content\"";
+				DEVELOPMENT_TEAM = 5Q9K7U8YKX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -494,6 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedicationManager/Preview Content\"";
+				DEVELOPMENT_TEAM = 5Q9K7U8YKX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

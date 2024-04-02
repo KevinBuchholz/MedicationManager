@@ -19,13 +19,19 @@ import Foundation
     
     func makeTodayCount() {
         let newDay = SingleDayRectangle()
+        let dayDurationInSeconds: TimeInterval = 60*60*24
         
         if dayArray.isEmpty {
             dayArray.insert(newDay, at: 0)
         } else if
             Date.now > dayArray[0].date
         {
-            dayArray.insert(newDay, at: 0)
+            let lastDate = dayArray[0].date
+            
+            for date in stride(from: lastDate, to: Date.now, by: dayDurationInSeconds) {
+                dayArray.insert(newDay, at: 0)
+            }
+            
         }
     }
   
@@ -130,12 +136,6 @@ import Foundation
         content.subtitle = "NOWWWWWWW"
         content.sound = .default
 //        content.badge = 1
-        
-        
-       
-        
-       
-        
         
         let dateComponents = Calendar.current.dateComponents([.hour, .minute, .second, .timeZone], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
