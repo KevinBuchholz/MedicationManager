@@ -76,16 +76,16 @@ import UserNotifications
     func save() {
         // Not .completeFileProtection: these files must stay readable
         // when the app is launched or woken while the device is locked.
-        let options: Data.WritingOptions = [
+        let writingOptions: Data.WritingOptions = [
             .atomic,
             .completeFileProtectionUntilFirstUserAuthentication
         ]
 
         do {
             try JSONEncoder().encode(firstLaunchOfApp)
-                .write(to: Self.firstLaunchPath, options: options)
+                .write(to: Self.firstLaunchPath, options: writingOptions)
             try JSONEncoder().encode(startDate)
-                .write(to: Self.startDatePath, options: options)
+                .write(to: Self.startDatePath, options: writingOptions)
         } catch {
             print("Unable to save data: \(error)")
         }
