@@ -7,11 +7,16 @@
 
 import Foundation
 
-struct Day: Identifiable {
+struct Day: Identifiable, Hashable {
     let id = UUID()
-    let date = Date()
-    var hasTakenPill : Bool
-    
+    var date: Date
+    var hasTakenPill: Bool
+
+    init(date: Date = .now, hasTakenPill: Bool = false) {
+        self.date = date
+        self.hasTakenPill = hasTakenPill
+    }
+
     mutating func takePill() {
         hasTakenPill = true
     }
