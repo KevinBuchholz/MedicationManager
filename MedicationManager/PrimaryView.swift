@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PrimaryView: View {
     @EnvironmentObject var viewModel : LocalUserViewModel
-    @Environment (\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
 //    let date = Date.now
     
     var body: some View {
