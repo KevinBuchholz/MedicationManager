@@ -36,28 +36,37 @@ import Foundation
     }
   
 
-    let savePath = FileManager.documentsDirectory.appendingPathComponent("firstLaunchOfApp")
+    private static let firstLaunchPath = FileManager.documentsDirectory
+        .appendingPathComponent("firstLaunchOfApp")
+    private static let startDatePath = FileManager.documentsDirectory
+        .appendingPathComponent("startDate")
+
     init() {
-        do {
-            let firstLaunch = try Data(contentsOf: savePath)
-            firstLaunchOfApp = try JSONDecoder().decode(Bool.self, from: firstLaunch)
-            let savedStartDate = try Data(contentsOf: savePath)
-            startDate = try JSONDecoder().decode(Date.self, from: savedStartDate)
-            
-        } catch {
+        // Decode each value independently so a failure to read one
+        // does not discard the other.
+        if let data = try? Data(contentsOf: Self.firstLaunchPath),
+           let savedFirstLaunch = try? JSONDecoder().decode(Bool.self, from: data) {
+            firstLaunchOfApp = savedFirstLaunch
+        } else {
             firstLaunchOfApp = true
+        }
+
+        if let data = try? Data(contentsOf: Self.startDatePath),
+           let savedStartDate = try? JSONDecoder().decode(Date.self, from: data) {
+            startDate = savedStartDate
+        } else {
             startDate = Date.now
         }
     }
     
     func save() {
         do {
-            let firstLaunch = try JSONEncoder().encode(firstLaunchOfApp)
-            let savedStartDate = try JSONEncoder().encode(startDate)
-            try firstLaunch.write(to: savePath, options: [.atomic, .completeFileProtection])
-            try savedStartDate.write(to: savePath, options: [.atomic, .completeFileProtection])
+            try JSONEncoder().encode(firstLaunchOfApp)
+                .write(to: Self.firstLaunchPath, options: [.atomic, .completeFileProtection])
+            try JSONEncoder().encode(startDate)
+                .write(to: Self.startDatePath, options: [.atomic, .completeFileProtection])
         } catch {
-            print("Unable to save data.")
+            print("Unable to save data: \(error)")
         }
     }
     
