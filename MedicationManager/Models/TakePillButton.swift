@@ -11,11 +11,7 @@ struct TakePillButton: View {
     @EnvironmentObject var viewModel: LocalUserViewModel
     var body: some View {
         Button{
-            viewModel.dayArray[0].hasTakenPill = true
-            
-            print(viewModel.dayArray[0])
-            print(viewModel.dayArray)
-            
+            viewModel.takePillToday()
         } label: {
             Text("Take your Pill")
                 .frame(
@@ -42,4 +38,5 @@ struct TakePillButton: View {
 
 #Preview {
     TakePillButton()
+        .environmentObject(LocalUserViewModel())
 }

@@ -1,11 +1,12 @@
 //
-//  PrimaryViewModel.swift
-//  recreate
+//  LocalUserViewModel.swift
+//  MedicationManager
 //
 //  Created by Kevin Buchholz on 5/19/23.
 //
 import SwiftUI
 import Foundation
+import UserNotifications
 
 
 
@@ -13,26 +14,39 @@ import Foundation
     
     var passedDays: [Day] = [Day(hasTakenPill: true), Day(hasTakenPill: true), Day(hasTakenPill: false), Day(hasTakenPill: true)]
     
-    @Published var dayArray: [SingleDayRectangle] = []
+    @Published var days: [Day] = []
     
     var today = Day(hasTakenPill: false)
     
+    /// Fills in a Day for every calendar day between the most recent
+    /// stored day and today. Safe to call repeatedly — if the most
+    /// recent day is already today, it does nothing.
     func makeTodayCount() {
-        let newDay = SingleDayRectangle()
-        let dayDurationInSeconds: TimeInterval = 60*60*24
-        
-        if dayArray.isEmpty {
-            dayArray.insert(newDay, at: 0)
-        } else if
-            Date.now > dayArray[0].date
-        {
-            let lastDate = dayArray[0].date
-            
-            for date in stride(from: lastDate, to: Date.now, by: dayDurationInSeconds) {
-                dayArray.insert(newDay, at: 0)
-            }
-            
+        let calendar = Calendar.current
+        let startOfToday = calendar.startOfDay(for: .now)
+
+        guard let mostRecent = days.first else {
+            days = [Day(date: startOfToday)]
+            return
         }
+
+        var cursor = calendar.startOfDay(for: mostRecent.date)
+        guard cursor < startOfToday else { return }
+
+        while let next = calendar.date(byAdding: .day, value: 1, to: cursor),
+              next <= startOfToday {
+            days.insert(Day(date: next), at: 0)
+            cursor = next
+        }
+    }
+
+    /// Marks today's entry as taken, if there is one.
+    func takePillToday() {
+        guard let index = days.firstIndex(where: {
+            Calendar.current.isDateInToday($0.date)
+        }) else { return }
+
+        days[index].takePill()
     }
   
 
@@ -60,11 +74,18 @@ import Foundation
     }
     
     func save() {
+        // Not .completeFileProtection: these files must stay readable
+        // when the app is launched or woken while the device is locked.
+        let options: Data.WritingOptions = [
+            .atomic,
+            .completeFileProtectionUntilFirstUserAuthentication
+        ]
+
         do {
             try JSONEncoder().encode(firstLaunchOfApp)
-                .write(to: Self.firstLaunchPath, options: [.atomic, .completeFileProtection])
+                .write(to: Self.firstLaunchPath, options: options)
             try JSONEncoder().encode(startDate)
-                .write(to: Self.startDatePath, options: [.atomic, .completeFileProtection])
+                .write(to: Self.startDatePath, options: options)
         } catch {
             print("Unable to save data: \(error)")
         }
@@ -74,9 +95,8 @@ import Foundation
         UserDefaults.standard.set(array, forKey: "timeLineKey")
     }
     
-    func loadArrayFromStorage() -> [Date]? {
-        print("Loading")
-        return UserDefaults.standard.array(forKey: "timeLineKey") as? [Date]
+    func loadArrayFromStorage() {
+        localUserTimeLine = UserDefaults.standard.array(forKey: "timeLineKey") as? [Date] ?? []
     }
     
 
@@ -113,30 +133,6 @@ import Foundation
         }
     }
     
-    //    func scheduleNotification(date: Date){
-    //
-    //        let content = UNMutableNotificationContent()
-    //        content.title = "This is the Interruptor Title."
-    //        content.subtitle = "This is the Interruptor Subtitle."
-    //        content.sound = .default
-    //        content.badge = 1
-    //
-    //
-    //        let dateComponents = Calendar.current.dateComponents([.hour, .minute, .timeZone], from: date)
-    //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-    //
-    //
-    //        let request = UNNotificationRequest(
-    //            identifier: UUID().uuidString,
-    //            content: content,
-    //            trigger: trigger)
-    //        UNUserNotificationCenter.current().add(request)
-    //
-    //    }
-    func drawToday(date: Date) {
-//        SingleDayRectangle(hasTakenPill: false)
-    }
-    
     func scheduleCustomNotification(date: Date) async throws {
        
         
@@ -144,7 +140,6 @@ import Foundation
         content.title = "TAKE YOUR PILLS"
         content.subtitle = "NOWWWWWWW"
         content.sound = .default
-//        content.badge = 1
         
         let dateComponents = Calendar.current.dateComponents([.hour, .minute, .second, .timeZone], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
