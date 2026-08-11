@@ -14,7 +14,7 @@ struct MedicationManagerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(LocalUserViewModel())
+                .environmentObject(viewModel)
         }
     }
 }
